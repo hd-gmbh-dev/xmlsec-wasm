@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# source ${EMSDK_DIR}/emsdk_env.sh
 mkdir -p ./out/build
 mkdir -p ./out/usr/local
 

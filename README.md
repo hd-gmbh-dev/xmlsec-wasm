@@ -21,3 +21,9 @@ The project is using Emscripten C++, JavaScript and TypeScript to provide its fu
 To simplify project setup one can use Visual Studio Code with DevContainers feature enabled.
 
 References: <https://code.visualstudio.com/docs/devcontainers/containers>
+
+```sh
+source ${EMSDK_DIR}/emsdk_env.sh
+./scripts/build-dependencies.sh
+./scripts/build.sh
+```
