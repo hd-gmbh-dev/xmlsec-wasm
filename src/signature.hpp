@@ -7,6 +7,7 @@
 #include <libxslt/security.h>
 #include "buffer.hpp"
 #include "keystore.hpp"
+#include "validator.hpp"
 
 class XmlSignature
 {
@@ -19,5 +20,6 @@ public:
     XmlSignature();
     ~XmlSignature();
     KeyStore loadPKCS12(Buffer buf);
+    Validator validator();
 };
 #endif

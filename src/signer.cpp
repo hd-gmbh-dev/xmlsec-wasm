@@ -41,7 +41,6 @@ _ref_count(std::make_shared<int>(0))
 
 Signer::~Signer()
 {
-    std::cout << "ref count: " << this->_ref_count.use_count() << std::endl;
     if (this->_ref_count.use_count() == 1 && (this->_cert == NULL || this->_pkey == NULL || this->_ca == NULL))
     {
         if (this->_cert != NULL) {
@@ -69,6 +68,10 @@ int Signer::process_file(const char* tmpl_file, int tmp_file_size, xmlChar **mem
     xmlNodePtr node = NULL;
     xmlSecDSigCtxPtr dsigCtx = NULL;
     xmlSecKeyDataPtr keyData = NULL;
+    xmlSecKeyDataPtr x509Data;
+    unsigned char * name = NULL;
+    int nameLen = 0;
+    xmlSecSize nameSize = 0;
     xmlSecKeyPtr signKey = xmlSecKeyCreate();
     int res = -1;
 
@@ -86,15 +89,33 @@ int Signer::process_file(const char* tmpl_file, int tmp_file_size, xmlChar **mem
         fprintf(stderr, "Error: start node not found in \"%s\"\n", tmpl_file);
         goto done;
     }
-    std::cout << "load key (" << this->_pkey << ") with type: " << EVP_PKEY_base_id(this->_pkey) << std::endl;
-    /* load private key, assuming that there is not password */
     keyData = xmlSecOpenSSLEvpKeyAdopt(this->_pkey);
     res = xmlSecKeySetValue(signKey, keyData);
     if (res != 0)
     {
         fprintf(stderr,"Error: (%d) unable to create key\n", res);
         goto done;
-        /* code */
+    }
+    if(name == NULL) {
+        name = X509_alias_get0(this->_cert, &nameLen);
+    }
+    if(name == NULL) {
+        name = X509_keyid_get0(this->_cert, &nameLen);
+    }
+    if((name != NULL) && (nameLen > 0)) {
+        nameSize = (int) nameLen;
+        res = xmlSecKeySetNameEx(signKey, name, nameSize);
+        if(res < 0) {
+            fprintf(stderr,"Error: (%d) unable to set key name\n", res);
+            goto done;
+        }
+    }
+    x509Data = xmlSecKeyEnsureData(signKey, xmlSecOpenSSLKeyDataX509Id);
+    res = xmlSecOpenSSLKeyDataX509AdoptKeyCert(x509Data, this->_cert);
+    if (res != 0)
+    {
+        fprintf(stderr,"Error: (%d) unable to create public key\n", res);
+        goto done;
     }
     dsigCtx = xmlSecDSigCtxCreate(NULL);
     dsigCtx->signKey = signKey;

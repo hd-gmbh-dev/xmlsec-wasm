@@ -24,12 +24,12 @@ jobs:
     - name: Download a single artifact
       uses: actions/download-artifact@v4
       with:
-        name: raxb-xmlsec-wasm
-        path: dist
+        name: xmlsec-wasm
+        path: out/pkg
     - name: Display structure of downloaded files
-      run: ls -R dist
+      run: ls -R out/pkg
     - run: npm publish --provenance --access public
-      working-directory: ./dist
+      working-directory: ./out/pkg
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   release:

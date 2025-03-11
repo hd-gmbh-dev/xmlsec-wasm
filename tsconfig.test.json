@@ -1,0 +1,22 @@
+{
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "include": ["env.d.ts", "utils/**/*", "tests/**/*"],
+  "exclude": ["src/**/*", "pkg/*"],
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "types": ["vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "resolvePackageJsonExports": false,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "noImplicitThis": false,
+    "maxNodeModuleJsDepth": 10,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": false
+  }
+}

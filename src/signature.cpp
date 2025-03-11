@@ -5,10 +5,13 @@
 #include <openssl/provider.h>
 #include <openssl/evp.h>
 #include <openssl/pkcs12.h>
+#include <openssl/x509.h>
 #include <libxml/parser.h>
 #include <xmlsec/xmlsec.h>
 #include <xmlsec/xmltree.h>
 #include <xmlsec/xmldsig.h>
+#include <xmlsec/crypto.h>
+#include <xmlsec/openssl/x509.h>
 #include <xmlsec/crypto.h>
 
 XmlSignature::XmlSignature()
@@ -103,4 +106,16 @@ KeyStore XmlSignature::loadPKCS12(Buffer buf)
     this->_keystore_count += 1;
     int id = this->_keystore_count;
     return std::move(KeyStore(id, p12));
+}
+
+Validator XmlSignature::validator()
+{
+    xmlSecKeysMngrPtr mngr;
+    mngr = xmlSecKeysMngrCreate();
+    if(xmlSecCryptoAppDefaultKeysMngrInit(mngr) < 0) {
+        fprintf(stderr, "Error: failed to initialize keys manager.\n");
+        xmlSecKeysMngrDestroy(mngr);
+        return Validator(NULL);
+    }
+    return Validator(mngr);
 }

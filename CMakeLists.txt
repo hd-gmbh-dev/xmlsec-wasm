@@ -12,6 +12,8 @@ set(SOURCES
         src/keystore.hpp
         src/signer.cpp
         src/signer.hpp
+        src/validator.cpp
+        src/validator.hpp
         src/signature.cpp
         src/signature.hpp
         src/bindings.cpp
@@ -72,7 +74,7 @@ set_target_properties(${PROJECT_NAME}
         -O3\
         -s EMULATE_FUNCTION_POINTER_CASTS=1\
         -s WASM=1\
-        -s ENVIRONMENT=web,node\
+        -s ENVIRONMENT=web,worker,node\
         -s MODULARIZE=1\
         -s FILESYSTEM=1\
         -s IMPORTED_MEMORY\

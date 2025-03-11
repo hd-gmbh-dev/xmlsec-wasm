@@ -97,6 +97,7 @@ jobs:
       working-directory: .
       run: |
         mkdir -p out/pkg
+        cp package.json out/pkg/package.json
         cd out/pkg
         cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=$EMSDK/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake ../..
         cmake --build . --target xmlsec-wasm
@@ -105,8 +106,8 @@ jobs:
       with:
         name: xmlsec-wasm-build
         path: ./out/pkg
-  # publish:
-  #   if: startsWith( github.ref, 'refs/tags/v' )
-  #   uses: ./.github/workflows/publish.yaml
-  #   needs: ci
-  #   secrets: inherit
+  publish:
+    if: startsWith( github.ref, 'refs/tags/v' )
+    uses: ./.github/workflows/publish.yaml
+    needs: ci
+    secrets: inherit
