@@ -1,0 +1,36 @@
+{
+  "name": "xmlsec-wasm",
+  "description": "manage signatures via xmlsec1 in the browser",
+  "collaborators": [
+    "H & D GmbH Open Source <contact-oss@h-d-gmbh.de>"
+  ],
+  "type": "module",
+  "url": "https://github.com/hd-gmbh-dev/xmlsec-wasm",
+  "version": "0.1.0",
+  "files": [
+    "xmlsec-wasm.wasm",
+    "xmlsec-wasm.js",
+    "xmlsec-wasm.d.ts"
+  ],
+  "main": "xmlsec-wasm.js",
+  "module": "xmlsec-wasm.js",
+  "types": "xmlsec-wasm.d.ts",
+  "sideEffects": [
+    "./xmlsec-wasm.js",
+    "./snippets/*"
+  ],
+  "author": {
+    "name": "H & D GmbH Open Source",
+    "email": "contact-oss@h-d-gmbh.de"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hd-gmbh-dev/xmlsec-wasm.git"
+  },
+  "keywords": [
+    "xml",
+    "xmlsec",
+    "emscripten",
+    "wasm"
+  ]
+}
