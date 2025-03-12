@@ -19,7 +19,9 @@ XML Security Library example: Simple signature template file for sign1 example.
 -->
 <Envelope xmlns="urn:envelope">
   <Data>
-	Hello, World!
+    <Empty />
+    <NotEmpty></NotEmpty>
+	  <Text>Hello, World!</Text>
   </Data>
   <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
     <SignedInfo>

@@ -1,6 +1,7 @@
 #ifndef VALIDATOR_H
 #define VALIDATOR_H
 #include <string.h>
+#include <memory.h>
 #include <xmlsec/xmlsec.h>
 #include "buffer.hpp"
 

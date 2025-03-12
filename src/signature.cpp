@@ -37,6 +37,7 @@ XmlSignature::XmlSignature()
     xmlLoadExtDtdDefaultValue = XML_DETECT_IDS | XML_COMPLETE_ATTRS;
     xmlSubstituteEntitiesDefault(1);
     xmlIndentTreeOutput = 1;
+    xmlSaveNoEmptyTags = 1;
     this->xsltSecPrefs = xsltNewSecurityPrefs();
     xsltSetSecurityPrefs(this->xsltSecPrefs,  XSLT_SECPREF_READ_FILE,        xsltSecurityForbid);
     xsltSetSecurityPrefs(this->xsltSecPrefs,  XSLT_SECPREF_WRITE_FILE,       xsltSecurityForbid);

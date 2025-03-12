@@ -10,3 +10,4 @@ mkdir -p out/pkg
 cd out/pkg
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=$CMAKE_TOOLCHAIN_FILE ../..
 cmake --build . --target xmlsec-wasm
+cp ../../package.json .

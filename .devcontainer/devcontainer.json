@@ -46,8 +46,7 @@
           }
         },
         "C_Cpp.default.includePath": [
-          "/usr/local/emsdk/upstream/emscripten/system/include",
-          "/usr/local/emsdk/upstream/emscripten/system/include/compat",
+          "/usr/local/emsdk/upstream/emscripten/system/**",
           "./out/usr/local/include",
           "./out/usr/local/include/libxml2",
           "./out/usr/local/include/libxslt",

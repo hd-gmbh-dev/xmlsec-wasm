@@ -130,8 +130,7 @@ int Signer::process_file(const char* tmpl_file, int tmp_file_size, xmlChar **mem
         goto done;
     }
 
-
-    xmlDocDumpFormatMemory(doc, mem, size, 1);
+    xmlDocDumpFormatMemory(doc, mem, size, 4);
 
     res = 0;
 done:

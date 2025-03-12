@@ -6,7 +6,7 @@
   ],
   "type": "module",
   "url": "https://github.com/hd-gmbh-dev/xmlsec-wasm",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "files": [
     "xmlsec-wasm.wasm",
     "xmlsec-wasm.js",
