@@ -86,6 +86,7 @@ set_target_properties(${PROJECT_NAME}
         -s ABORTING_MALLOC=0 \
         -s EXPORT_ES6=1\
         -s EXPORT_NAME=XmlSecWasm\
+        -s DYNAMIC_EXECUTION=0\
         --emit-tsd xmlsec-wasm.d.ts \
         --no-entry \
         -lembind \
